@@ -30,8 +30,8 @@ exports.checkAccountPayload = async (req, res, next) => {
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   try {
-    const existingAccount = await Account.getAll();
-    const result = existingAccount.filter((account) => {
+    const usedAccount = await Account.getAll();
+    const result = usedAccount.filter((account) => {
       if (account.name === req.body.name.trim()) {
         return account;
       }
@@ -47,6 +47,7 @@ exports.checkAccountNameUnique = async (req, res, next) => {
   }
 };
 
+//filter help return what i needed to return for test
 exports.checkAccountId = async (req, res, next) => {
   try {
     const account = await Account.getById(req.params.id);
